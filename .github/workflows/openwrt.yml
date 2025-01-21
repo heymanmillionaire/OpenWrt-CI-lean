@@ -65,7 +65,7 @@ jobs:
           mkdir package/luci-app-homeproxy
           cd package/luci-app-homeproxy
           git init
-          git remote add -f origin https://github.com/douglarek/luci-app-homeproxy.git
+          git remote add -f origin https://github.com/immortalwrt/homeproxy.git
           git config core.sparsecheckout true
           echo "luci-app-homeproxy" >> .git/info/sparse-checkout
           git pull --depth 1 origin master

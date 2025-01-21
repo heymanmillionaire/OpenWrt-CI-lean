@@ -52,7 +52,7 @@ jobs:
       - name: Install OpenClash
         run: |
           # svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
-          $ mkdir package/luci-app-openclash
+          # mkdir package/luci-app-openclash
           # cd package/luci-app-openclash
           # git init
           # git remote add -f origin https://github.com/vernesong/OpenClash.git

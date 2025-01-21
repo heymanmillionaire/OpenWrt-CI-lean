@@ -44,7 +44,11 @@ jobs:
           mv ./openwrt/* ./
       - name: Install Helloword
         run: |
-          echo "src-git helloworld https://github.com/fw876/helloworld" >> ./feeds.conf.default 
+          # echo "src-git helloworld https://github.com/fw876/helloworld" >> ./feeds.conf.default 
+          rm -rf package/helloworld
+          git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
+          git -C package/helloworld pull
+          rm -rf package/helloworld
       - name: Install OpenClash
         run: |
           # svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
@@ -59,9 +63,13 @@ jobs:
           # pushd luci-app-openclash/tools/po2lmo
           # make && sudo make install
           # popd
-          
+          mkdir package/openclash
+          git clone --depth=1 https://github.com/vernesong/OpenClash.git
+          git -C package/openclash pull
+          rm -rf package/openclash
       - name: Install homeproxy
         run: |
+          mkdir package/homeproxy
           git clone --depth=1 https://github.com/muink/luci-app-homeproxy.git package/homeproxy
           git -C package/homeproxy pull
           rm -rf package/homeproxy

@@ -37,9 +37,9 @@ jobs:
           sudo -E apt-get clean
       - name: Download lede
         run: |
-          git clone https://github.com/coolsnowwolf/lede
-          cp .config ./lede/.config
-          mv ./lede/* ./
+          git clone https://github.com/openwrt/openwrt.git
+          cp .config ./openwrt/.config
+          mv ./openwrt/* ./
       - name: Install Helloword
         run: |
           echo "src-git helloworld https://github.com/fw876/helloworld" >> ./feeds.conf.default 

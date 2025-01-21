@@ -48,7 +48,7 @@ jobs:
           rm -rf package/helloworld
           git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
           git -C package/helloworld pull
-          rm -rf package/helloworld
+          # rm -rf package/helloworld
       - name: Install OpenClash
         run: |
           # svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
@@ -66,13 +66,13 @@ jobs:
           mkdir package/openclash
           git clone --depth=1 https://github.com/vernesong/OpenClash.git
           git -C package/openclash pull
-          rm -rf package/openclash
+          # rm -rf package/openclash
       - name: Install homeproxy
         run: |
           mkdir package/homeproxy
           git clone --depth=1 https://github.com/muink/luci-app-homeproxy.git package/homeproxy
           git -C package/homeproxy pull
-          rm -rf package/homeproxy
+          # rm -rf package/homeproxy
       - name: Update feeds
         run: |
           ./scripts/feeds update -a

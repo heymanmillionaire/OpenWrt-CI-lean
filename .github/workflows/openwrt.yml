@@ -48,31 +48,23 @@ jobs:
       - name: Install OpenClash
         run: |
           # svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
-          mkdir package/luci-app-openclash
-          cd package/luci-app-openclash
-          git init
-          git remote add -f origin https://github.com/vernesong/OpenClash.git
-          git config core.sparsecheckout true
-          echo "luci-app-openclash" >> .git/info/sparse-checkout
-          git pull --depth 1 origin master
-          git branch --set-upstream-to=origin/master master
-          pushd luci-app-openclash/tools/po2lmo
-          make && sudo make install
-          popd
+          $ mkdir package/luci-app-openclash
+          # cd package/luci-app-openclash
+          # git init
+          # git remote add -f origin https://github.com/vernesong/OpenClash.git
+          # git config core.sparsecheckout true
+          # echo "luci-app-openclash" >> .git/info/sparse-checkout
+          # git pull --depth 1 origin master
+          # git branch --set-upstream-to=origin/master master
+          # pushd luci-app-openclash/tools/po2lmo
+          # make && sudo make install
+          # popd
+          
       - name: Install homeproxy
         run: |
-          # svn co https://github.com/douglarek/luci-app-homeproxy package/luci-app-homeproxy
-          mkdir package/luci-app-homeproxy
-          cd package/luci-app-homeproxy
-          git init
-          git remote add -f origin https://github.com/muink/luci-app-homeproxy.git
-          git config core.sparsecheckout true
-          echo "luci-app-homeproxy" >> .git/info/sparse-checkout
-          git pull --depth 1 origin master
-          git branch --set-upstream-to=origin/master master
-          pushd luci-app-homeproxy/tools/po2lmo
-          make && sudo make install
-          popd
+          git clone --depth=1 https://github.com/muink/luci-app-homeproxy.git package/homeproxy
+          git -C package/homeproxy pull
+          rm -rf package/homeproxy
       - name: Update feeds
         run: |
           ./scripts/feeds update -a

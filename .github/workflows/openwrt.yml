@@ -59,7 +59,7 @@ jobs:
           
       - name: Install homeproxy
         run: |
-          echo "src-git https://github.com/lxiaya/openwrt-homeproxy" >> ./feeds.conf.default
+          echo "src-git homeproxy https://github.com/lxiaya/openwrt-homeproxy" >> ./feeds.conf.default
           
       - name: Update feeds
         run: |
@@ -83,18 +83,6 @@ jobs:
           name: OpenWrt_firmware
           path: bin/targets/
               
-      - name: build RelTag
-        id: BuildRelTag
-        run: | 
-          #echo "RelTag=$OpenWRTDevice-(${{ env.BUILDINFO }})-(${{ env.NOW }})" >> $GITHUB_ENV
-          echo "RelTag=${{ env.NOW }}_${{ env.OpenWRTDevice }}_@(${{ env.BUILDINFO }})" >> $GITHUB_ENV
-
-      - name: Upload firmware to github
-        uses: actions/upload-artifact@main
-        with:
-          name: OpenWrt_firmware-${{ env.OpenWRTDevice }}-${{ env.NOW }}
-          path: ${{ env.FIRMWARE }}
-
       - name: Create a release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:

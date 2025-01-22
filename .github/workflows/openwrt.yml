@@ -53,9 +53,9 @@ jobs:
         run: |
           echo "src-git helloworld https://github.com/fw876/helloworld" >> ./feeds.conf.default 
           
-      - name: Install OpenClash
+      - name: Install Mihomo
         run: |
-
+          echo "src-git mihomo https://github.com/morytyann/OpenWrt-mihomo.git;main" >> ./feeds.conf.default
           
       - name: Install homeproxy
         run: |

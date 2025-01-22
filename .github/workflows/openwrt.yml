@@ -59,10 +59,7 @@ jobs:
           
       - name: Install homeproxy
         run: |
-          mkdir package/homeproxy
-          git clone --depth=1 https://github.com/muink/luci-app-homeproxy.git package/homeproxy
-          git -C package/homeproxy pull
-          rm -rf package/homeproxy
+          echo "src-git https://github.com/lxiaya/openwrt-homeproxy" >> ./feeds.conf.default
           
       - name: Update feeds
         run: |

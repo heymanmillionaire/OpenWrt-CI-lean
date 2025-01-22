@@ -98,4 +98,29 @@ jobs:
         with:
           name: OpenWrt_firmware
           path: bin/targets/
+              
+      - name: build RelTag
+        id: BuildRelTag
+        run: | 
+          #echo "RelTag=$OpenWRTDevice-(${{ env.BUILDINFO }})-(${{ env.NOW }})" >> $GITHUB_ENV
+          echo "RelTag=${{ env.NOW }}_${{ env.OpenWRTDevice }}_@(${{ env.BUILDINFO }})" >> $GITHUB_ENV
+
+      - name: Upload firmware to github
+        uses: actions/upload-artifact@main
+        with:
+          name: OpenWrt_firmware-${{ env.OpenWRTDevice }}-${{ env.NOW }}
+          path: ${{ env.FIRMWARE }}
+
+      - name: Create a release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          title: "${{ env.RelTag }}"
+          automatic_release_tag: "${{ env.BUILDINFO }}"
+          files: |
+            ${{ env.FIRMWARE }}/*squashfs*.bin
+            ${{ env.FIRMWARE }}/*.buildinfo
+            ${{ env.FIRMWARE }}/*.manifest
+            ${{ env.FIRMWARE }}/sha256sums
           
